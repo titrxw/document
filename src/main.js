@@ -5,52 +5,83 @@ import api from './api'
 import store from './store'
 import storage from './libs/storage'
 import router from './router'
-import './assets/style/common.less'
 import App from './App'
 import Vconsole from 'vconsole'
+
+import { Form, FormItem } from 'element-ui'
+import { Tabs, TabPane } from 'element-ui'
+import { Input, Autocomplete } from 'element-ui'
+import { Checkbox } from 'element-ui'
+import { Switch } from 'element-ui'
+import { Select, Option, Cascader } from 'element-ui'
+import { Button, Link } from 'element-ui'
+import { Icon } from 'element-ui'
+import { Message, MessageBox } from 'element-ui'
+import { Container, Aside, Main, Header, Menu, MenuItem, MenuItemGroup, Submenu, Footer } from 'element-ui'
+import { Table, TableColumn } from 'element-ui'
+import { Tree } from 'element-ui'
+import { Pagination } from 'element-ui'
+import { Dialog } from 'element-ui'
+import { Loading } from 'element-ui'
+import { Card } from 'element-ui'
+import { Row,Col } from 'element-ui'
+import { RadioGroup } from 'element-ui'
+import { Radio } from 'element-ui'
+import { Tooltip } from 'element-ui'
+import { Backtop } from 'element-ui'
+import { Scrollbar } from 'element-ui'
+import { Upload } from 'element-ui'
+import mavonEditor from 'mavon-editor'
+import VueClipboard from 'vue-clipboard2'
+import 'mavon-editor/dist/css/index.css'
+import './assets/style/element-variables.scss'
+
+Vue.use(Form)
+Vue.use(FormItem)
+Vue.use(Tabs)
+Vue.use(TabPane)
+Vue.use(Input)
+Vue.use(Autocomplete)
+Vue.use(Select)
+Vue.use(Option)
+Vue.use(Cascader)
+Vue.use(Checkbox)
+Vue.use(Switch)
+Vue.use(Icon)
+Vue.use(Button)
+Vue.use(Link)
+Vue.use(Container)
+Vue.use(Aside)
+Vue.use(Main)
+Vue.use(Header)
+Vue.use(Menu)
+Vue.use(MenuItem)
+Vue.use(MenuItemGroup)
+Vue.use(Submenu)
+Vue.use(Footer)
+Vue.use(Table)
+Vue.use(TableColumn)
+Vue.use(Tree)
+Vue.use(Pagination)
+Vue.use(Dialog)
+Vue.use(Loading)
+Vue.use(Card)
+Vue.use(Row)
+Vue.use(Col)
+Vue.use(RadioGroup)
+Vue.use(Radio)
+Vue.use(Tooltip)
+Vue.use(Backtop)
+Vue.use(Scrollbar)
+Vue.use(Upload)
+Vue.use(mavonEditor)
+Vue.use(VueClipboard)
+Vue.prototype.$message = Message;
+Vue.prototype.$confirm = MessageBox.confirm;
 
 Vue.use(error);
 Vue.use(api);
 Vue.use(storage)
-
-
-Vue.directive('submit', {
-    // 当被绑定的元素插入到 DOM 中时……
-    bind(el, binding) {
-        function clickHandler(e) {
-            // 这里判断点击的元素是否是本身，是本身，则返回
-            if (!el.contains(e.target)) {
-                return false;
-            }
-            // 点击时间间隔,也可以按照请求是否结束来处理
-            if (e.timeStamp - e.srcElement.timeStamp <= 600) {
-                e.srcElement.timeStamp = e.timeStamp
-                return false;
-            }
-            e.srcElement.timeStamp = e.timeStamp
-
-            // 判断指令中是否绑定了函数
-            if (binding.expression) {
-                let arg = []
-                if (binding.arg) {
-                    arg = binding.arg.split(',')
-                }
-                if (e.target.dataset.args) {
-                    arg.push(e.target.dataset.args)
-                }
-                binding.value(e, ...arg);
-            }
-        }
-        // 给当前元素绑定个私有变量，方便在unbind中可以解除事件监听
-        el.__vueSubmit__ = clickHandler;
-        document.addEventListener('mousedown', clickHandler);
-    },
-    unbind(el) {
-        // 解除事件监听
-        document.removeEventListener('mousedown', el.__vueSubmit__);
-        delete el.__vueSubmit__;
-    }
-})
 
 process.env.NODE_ENV === 'development' && new Vconsole()
 

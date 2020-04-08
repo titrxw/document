@@ -3,7 +3,7 @@
     <img src='../assets/images/404.png'>
 </div>
 </template>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 img {
   width:270px;
   height:270px;
