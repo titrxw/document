@@ -2,7 +2,7 @@ export default [
   {
     path: '*',
     component: function (resolve) {
-      require(['../page/404'], resolve)
+      require(['../view/login'], resolve)
     }
   },
   {
@@ -15,7 +15,7 @@ export default [
       showNavBar: false
     },
     component: function (resolve) {
-      require(['../page/login'], resolve)
+      require(['../view/login'], resolve)
     }
   },
   {
@@ -27,20 +27,7 @@ export default [
       showNavBar: false
     },
     component: function (resolve) {
-      require(['../page/login'], resolve)
-    }
-  },
-  {
-    path: '/wechatAuth',
-    meta: {
-      // 添加该字段，表示进入这个路由是需要登录的
-      requireWechatAuth: false,
-      showTabBar: false,
-      showNavBar: false,
-      keepAlive: false
-    },
-    component: function (resolve) {
-      require(['../page/wechat/auth'], resolve)
+      require(['../view/login'], resolve)
     }
   }
 ]
